@@ -15,8 +15,8 @@ import javax.swing.*;
  */
 public class Trabalho_3 extends JFrame implements ActionListener{
 
-    JLabel LNum1,LNum2,LResultado;
-    JButton BSoma, BSubtrai, BMultiplica, BDivide, BLimpa;
+    JLabel LNum1,LNum2,LResultado, LEmpty1, LEmpty2;
+    JButton BSoma, BSubtrai, BMultiplica, BDivide, BLimpa, BQuad, BPot, BSqrt;
     JTextField TNum1,TNum2,TResultado;
     
     /**
@@ -29,11 +29,11 @@ public class Trabalho_3 extends JFrame implements ActionListener{
     }
     
     public Trabalho_3(){
-        setTitle("GUI de Calculadora");
+        setTitle("Segundo Exercício");
         setSize(350,150);
         setLocation(200,200);
         getContentPane().setBackground(new Color(220,220,220));
-        setLayout(new GridLayout(3,4));
+        setLayout(new GridLayout(4,4));
         
         LNum1 = new JLabel("1°Núm.");
         LNum1.setForeground(Color.blue);
@@ -47,6 +47,10 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         LResultado.setFont(new Font("",Font.BOLD,16));
         LResultado.setForeground(Color.red);
         
+        //Gambiarra
+        LEmpty1 = new JLabel("");
+        LEmpty2 = new JLabel("");
+        
         BSoma = new JButton ("+");
         BSoma.addActionListener(this);
         
@@ -59,8 +63,18 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         BDivide = new JButton ("/");
         BDivide.addActionListener(this);
         
+        BQuad = new JButton("Quadrado");
+        BQuad.addActionListener(this);
+        
+        BPot = new JButton("Potência");
+        BPot.addActionListener(this);
+        
+        BSqrt = new JButton("Raiz");
+        BSqrt.addActionListener(this);
+        
         BLimpa = new JButton ("Limpar");
         BLimpa.addActionListener(this);
+        
         BLimpa.setBackground(Color.red);
         BLimpa.setForeground(Color.white);
         
@@ -80,6 +94,12 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         add(BDivide);
         add(LResultado);
         add(TResultado);
+        add(BQuad);
+        add(BPot);
+        //Gambiarra
+        add(LEmpty1);
+        add(LEmpty2);
+        add(BSqrt);
         add(BLimpa);
     }
     
@@ -94,12 +114,30 @@ public class Trabalho_3 extends JFrame implements ActionListener{
     
         try{
             num1 = Float.parseFloat(TNum1.getText());
-            num2 = Float.parseFloat(TNum2.getText());
         } catch (NumberFormatException erro){
             TResultado.setText("Erro");
             return;
         }
 
+        if (evento.getSource()==BQuad){
+            resultado = (float)Math.pow(num1,2);
+            TResultado.setText(String.valueOf(resultado));
+            return;
+        }
+        
+        if (evento.getSource()==BSqrt){
+            resultado = (float)Math.sqrt(num1);
+            TResultado.setText(String.valueOf(resultado));
+            return;
+        }
+        
+        try{
+            num2 = Float.parseFloat(TNum2.getText());
+        } catch (NumberFormatException erro){
+            TResultado.setText("Erro");
+            return;
+        }
+        
         if (evento.getSource()==BSoma)
             resultado = num1 + num2;
         if (evento.getSource()==BSubtrai)   
@@ -108,6 +146,9 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             resultado = num1 * num2;
         if (evento.getSource()==BDivide)
             resultado = num1 / num2;
+        if (evento.getSource()==BPot)
+            resultado = (float)Math.pow(num1,num2);
+        
         TResultado.setText(String.valueOf(resultado));
     }   
 }
