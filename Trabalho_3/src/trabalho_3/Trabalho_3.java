@@ -47,7 +47,6 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         LResultado.setFont(new Font("",Font.BOLD,16));
         LResultado.setForeground(Color.red);
         
-        //Gambiarra
         LEmpty1 = new JLabel("");
         LEmpty2 = new JLabel("");
         
@@ -96,7 +95,6 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         add(TResultado);
         add(BQuad);
         add(BPot);
-        //Gambiarra
         add(LEmpty1);
         add(LEmpty2);
         add(BSqrt);
