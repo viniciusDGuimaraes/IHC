@@ -7,6 +7,7 @@ package trabalho_3;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.NumberFormat;
 import javax.swing.*;
 
 /**
@@ -15,8 +16,9 @@ import javax.swing.*;
  */
 public class Trabalho_3 extends JFrame implements ActionListener{
 
-    JLabel LNum1,LNum2,LResultado, LEmpty1, LEmpty2;
-    JButton BSoma, BSubtrai, BMultiplica, BDivide, BLimpa, BQuad, BPot, BSqrt;
+    JLabel LNum1,LNum2,LResultado, LEmpty1;
+    JButton BSoma, BSubtrai, BMultiplica, BDivide, BLimpa, BQuad, BPot, BSqrt,
+            BMoeda, BReal, BPctg, BAum, BDim;
     JTextField TNum1,TNum2,TResultado;
     
     /**
@@ -29,11 +31,11 @@ public class Trabalho_3 extends JFrame implements ActionListener{
     }
     
     public Trabalho_3(){
-        setTitle("Segundo Exercício");
-        setSize(350,150);
+        setTitle("Terceiro Exercício");
+        setSize(450,250);
         setLocation(200,200);
         getContentPane().setBackground(new Color(220,220,220));
-        setLayout(new GridLayout(4,4));
+        setLayout(new GridLayout(5,4));
         
         LNum1 = new JLabel("1°Núm.");
         LNum1.setForeground(Color.blue);
@@ -48,7 +50,6 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         LResultado.setForeground(Color.red);
         
         LEmpty1 = new JLabel("");
-        LEmpty2 = new JLabel("");
         
         BSoma = new JButton ("+");
         BSoma.addActionListener(this);
@@ -77,6 +78,21 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         BLimpa.setBackground(Color.red);
         BLimpa.setForeground(Color.white);
         
+        BMoeda = new JButton("0,00");
+        BMoeda.addActionListener(this);
+        
+        BReal = new JButton("R$");
+        BReal.addActionListener(this);
+        
+        BPctg = new JButton("0.00%");
+        BPctg.addActionListener(this);
+        
+        BAum = new JButton(">>");
+        BAum.addActionListener(this);
+        
+        BDim = new JButton("<<");
+        BDim.addActionListener(this);
+        
         TNum1 = new JTextField();
         TNum2 = new JTextField();
         
@@ -95,9 +111,13 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         add(TResultado);
         add(BQuad);
         add(BPot);
-        add(LEmpty1);
-        add(LEmpty2);
         add(BSqrt);
+        add(BMoeda);
+        add(BReal);
+        add(BPctg);
+        add(LEmpty1);
+        add(BAum);
+        add(BDim);
         add(BLimpa);
     }
     
@@ -108,45 +128,54 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             TResultado.setText("");
             return;
         }
-        float num1=0,num2=0,resultado=0;
+        double num1=0,num2=0, resultado = 0;
+        
+        NumberFormat moeda=NumberFormat.getCurrencyInstance(), 
+                     real=NumberFormat.getCurrencyInstance(), 
+                     pctg=NumberFormat.getPercentInstance();
+        
     
         try{
-            num1 = Float.parseFloat(TNum1.getText());
+            num1 = Double.parseDouble(TNum1.getText());
         } catch (NumberFormatException erro){
             TResultado.setText("Erro");
             return;
         }
 
         if (evento.getSource()==BQuad){
-            resultado = (float)Math.pow(num1,2);
+            resultado = Math.pow(num1,2);
             TResultado.setText(String.valueOf(resultado));
             return;
         }
         
         if (evento.getSource()==BSqrt){
-            resultado = (float)Math.sqrt(num1);
+            resultado = Math.sqrt(num1);
             TResultado.setText(String.valueOf(resultado));
             return;
         }
         
         try{
-            num2 = Float.parseFloat(TNum2.getText());
+            num2 = Double.parseDouble(TNum2.getText());
         } catch (NumberFormatException erro){
             TResultado.setText("Erro");
             return;
         }
         
-        if (evento.getSource()==BSoma)
+        if(evento.getSource()==BSoma)
             resultado = num1 + num2;
-        if (evento.getSource()==BSubtrai)   
+        if(evento.getSource()==BSubtrai)   
             resultado = num1 - num2;
-        if (evento.getSource()==BMultiplica)
+        if(evento.getSource()==BMultiplica)
             resultado = num1 * num2;
-        if (evento.getSource()==BDivide)
+        if(evento.getSource()==BDivide)
             resultado = num1 / num2;
-        if (evento.getSource()==BPot)
-            resultado = (float)Math.pow(num1,num2);
-        
+        if(evento.getSource()==BPot)
+            resultado = Math.pow(num1,num2);
+        if(evento.getSource()==BMoeda){
+            System.out.print(TResultado.getText());
+            TResultado.setText(""+moeda.format(TResultado.getText()));
+        }
+            
         TResultado.setText(String.valueOf(resultado));
     }   
 }
