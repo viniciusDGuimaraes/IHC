@@ -20,6 +20,13 @@ public class Trabalho_3 extends JFrame implements ActionListener{
     JButton BSoma, BSubtrai, BMultiplica, BDivide, BLimpa, BQuad, BPot, BSqrt,
             BMoeda, BReal, BPctg, BAum, BDim;
     JTextField TNum1,TNum2,TResultado;
+    double num1=0,num2=0;
+    static double resultado = 0;
+    static double resultadoAntigo;
+    static int fractionDigits;
+    NumberFormat real=NumberFormat.getNumberInstance(), 
+                 moeda=NumberFormat.getCurrencyInstance(), 
+                 pctg=NumberFormat.getPercentInstance();
     
     /**
      * @param args the command line arguments
@@ -78,11 +85,11 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         BLimpa.setBackground(Color.red);
         BLimpa.setForeground(Color.white);
         
-        BMoeda = new JButton("0,00");
-        BMoeda.addActionListener(this);
-        
-        BReal = new JButton("R$");
+        BReal = new JButton("0,00");
         BReal.addActionListener(this);
+        
+        BMoeda = new JButton("R$");
+        BMoeda.addActionListener(this);
         
         BPctg = new JButton("0.00%");
         BPctg.addActionListener(this);
@@ -112,8 +119,8 @@ public class Trabalho_3 extends JFrame implements ActionListener{
         add(BQuad);
         add(BPot);
         add(BSqrt);
-        add(BMoeda);
         add(BReal);
+        add(BMoeda);
         add(BPctg);
         add(LEmpty1);
         add(BAum);
@@ -128,13 +135,9 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             TResultado.setText("");
             return;
         }
-        double num1=0,num2=0, resultado = 0;
         
-        NumberFormat moeda=NumberFormat.getCurrencyInstance(), 
-                     real=NumberFormat.getCurrencyInstance(), 
-                     pctg=NumberFormat.getPercentInstance();
-        
-    
+        real.setMinimumFractionDigits(fractionDigits);
+                
         try{
             num1 = Double.parseDouble(TNum1.getText());
         } catch (NumberFormatException erro){
@@ -171,11 +174,35 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             resultado = num1 / num2;
         if(evento.getSource()==BPot)
             resultado = Math.pow(num1,num2);
-        if(evento.getSource()==BMoeda){
-            System.out.print(TResultado.getText());
-            TResultado.setText(""+moeda.format(TResultado.getText()));
+        if(evento.getSource()==BReal){
+            try{
+                TResultado.setText(real.format(resultado));
+            }catch(NumberFormatException erro){
+                TResultado.setText("Erro");
+            }
+            return;
         }
-            
+        if(evento.getSource()==BMoeda){
+            try{
+                TResultado.setText(moeda.format(resultado));
+            }catch(NumberFormatException erro){
+                TResultado.setText("Erro");
+            }
+            return;
+        }
+        if(evento.getSource()==BPctg){
+            try{
+                TResultado.setText(pctg.format(resultado));
+            }catch(NumberFormatException erro){
+                TResultado.setText("Erro");
+            }
+            return;
+        }
+        if(evento.getSource()==BAum){
+            real.setMinimumFractionDigits(fractionDigits+1);
+            TResultado.setText(real.format(resultado));
+        }
+        
         TResultado.setText(String.valueOf(resultado));
     }   
 }
