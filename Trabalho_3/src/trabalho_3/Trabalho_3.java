@@ -23,7 +23,7 @@ public class Trabalho_3 extends JFrame implements ActionListener{
     double num1=0,num2=0;
     static double resultado = 0;
     static double resultadoAntigo;
-    static int fractionDigits;
+    static int fractionDigits = 2;
     NumberFormat real=NumberFormat.getNumberInstance(), 
                  moeda=NumberFormat.getCurrencyInstance(), 
                  pctg=NumberFormat.getPercentInstance();
@@ -129,6 +129,7 @@ public class Trabalho_3 extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent evento){
+        //Limpa os TextField
         if (evento.getSource()==BLimpa){
             TNum1.setText("");
             TNum2.setText("");
@@ -136,27 +137,32 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             return;
         }
         
+        //Seta a quantidade de digitos decimais quando formatado para real
         real.setMinimumFractionDigits(fractionDigits);
-                
+        
+        //Checa se o valor no TextField1 é válido
         try{
             num1 = Double.parseDouble(TNum1.getText());
         } catch (NumberFormatException erro){
             TResultado.setText("Erro");
             return;
         }
-
+        
+        //Faz o quadrado do primeiro valor
         if (evento.getSource()==BQuad){
             resultado = Math.pow(num1,2);
             TResultado.setText(String.valueOf(resultado));
             return;
         }
         
+        //Faz a raiz quadrada do primeiro valor
         if (evento.getSource()==BSqrt){
             resultado = Math.sqrt(num1);
             TResultado.setText(String.valueOf(resultado));
             return;
         }
         
+        //Checa se o valor no TextField2 é válido
         try{
             num2 = Double.parseDouble(TNum2.getText());
         } catch (NumberFormatException erro){
@@ -164,6 +170,7 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             return;
         }
         
+        //Faz as operações básicas com os valor1 e valor2
         if(evento.getSource()==BSoma)
             resultado = num1 + num2;
         if(evento.getSource()==BSubtrai)   
@@ -174,6 +181,8 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             resultado = num1 / num2;
         if(evento.getSource()==BPot)
             resultado = Math.pow(num1,num2);
+        
+        //Exibe o resultado como um número real
         if(evento.getSource()==BReal){
             try{
                 TResultado.setText(real.format(resultado));
@@ -182,6 +191,8 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             }
             return;
         }
+        
+        //Exibe o resultado como um valor monetário
         if(evento.getSource()==BMoeda){
             try{
                 TResultado.setText(moeda.format(resultado));
@@ -190,6 +201,8 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             }
             return;
         }
+        
+        //Exibe o resultado como uma porcentagem
         if(evento.getSource()==BPctg){
             try{
                 TResultado.setText(pctg.format(resultado));
@@ -198,9 +211,21 @@ public class Trabalho_3 extends JFrame implements ActionListener{
             }
             return;
         }
+        
+        //Aumenta a quantidade de casas decimais do valor real e o exibe
         if(evento.getSource()==BAum){
-            real.setMinimumFractionDigits(fractionDigits+1);
+            fractionDigits += 1;
+            real.setMinimumFractionDigits(fractionDigits);
             TResultado.setText(real.format(resultado));
+            return;
+        }
+        
+        //Diminui a quantidade de casas decimais do valor real e o exibe
+        if(evento.getSource()==BDim){
+            fractionDigits -= 1;
+            real.setMinimumFractionDigits(fractionDigits);
+            TResultado.setText(real.format(resultado));
+            return;
         }
         
         TResultado.setText(String.valueOf(resultado));
