@@ -6,7 +6,6 @@
 	<style type="text/css">
 
 		body {
-			/* cor de fundo */
 			background-color: rgb(220, 220, 220);
 		}
 
@@ -33,7 +32,10 @@
 			font-weight: bold;
 		}
 	</style>
+	<script language="JavaScript" type="text/javascript" src="numberFormat154.js">
+	</script>
 	<script type="text/javascript">
+		var digitNumber = 3;
 		function Limpar() {
 			document.calculadora.num1.value = '';
 			document.calculadora.num2.value = '';
@@ -67,6 +69,51 @@
 				var valor = Math.sqrt(parseFloat(valor1));
 			}
 			document.calculadora.resultado.value = valor;
+		}
+		function Formata(forma){
+			var valor = document.calculadora.resultado.value;
+			var format = new NumberFormat();
+			if(forma=="aumenta"){
+				digitNumber++;
+				format.setInputDecimal('.');
+				format.setNumber(valor);
+				format.setPlaces(digitNumber, false);
+				format.setSeparators(true, ',', '.');
+				document.calculadora.resultado.value = format.toFormatted();
+			}
+			else if(forma=="diminui"){
+				if(digitNumber){
+					digitNumber--;
+				}
+				format.setInputDecimal('.');
+				format.setNumber(valor);
+				format.setPlaces(digitNumber, false);
+				format.setSeparators(true, ',', '.');
+				document.calculadora.resultado.value = format.toFormatted();
+			}
+			else if(forma=="moeda"){
+				format.setInputDecimal('.');
+				format.setNumber(valor);
+				format.setPlaces('2', false);
+				format.setSeparators(true, ',', '.');
+				format.setCurrencyValue('R$ ');
+				format.setCurrencyPosition(format.LEFT_OUTSIDE);
+				format.setCurrency(true);
+				document.calculadora.resultado.value = format.toFormatted();
+			}
+			else if(forma=="real"){
+				format.setInputDecimal('.');
+				format.setNumber(valor);
+				format.setPlaces(digitNumber, false);
+				format.setSeparators(true, ',', '.');
+				document.calculadora.resultado.value = format.toFormatted();
+			}
+			else if(forma=="pctg"){
+				format.setInputDecimal(".");
+				format.setNumber(valor);
+				format.setPlaces('4', false);
+				document.calculadora.resultado.value = format.toPercentage();
+			}
 		}
 	</script>
 </head>
@@ -121,16 +168,34 @@
 							<input name="potencia" class="oper" value="Pot&ecirc;ncia" onclick="Calcula('potencia')" type="button">
 						</td>
 					</tr>
-						<td></td>
-						<td></td>
+					<tr>
+						<td>
+							<input name="aumenta" class="oper" value="Aumenta" onclick="Formata('aumenta')" type="button">
+						</td>
+						<td>
+							<input name="diminui" class="oper" value="Diminui" onclick="Formata('diminui')" type="button">
+						</td>
+						<td>
+							<input name="moeda" class="oper" value="R$" onclick="Formata('moeda')" type="button">
+						</td>
 						<td>
 							<input name="raiz" class="oper" value="Raiz" onclick="Calcula('raiz')" type="button">
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input name="real" class="oper" value="0,00" onclick="Formata('real')" type="button">
+						</td>
+						<td>
+							<input name="pctg" class="oper" value="0.00%" onclick="Formata('pctg')" type="button">
 						</td>
 						<td>
 							<input name="limpar" class="limpar" value="Limpar" onclick="Limpar()" type="button">
 						</td>
+					</tr>
 					<tr>
-
+						
 					</tr>
 				</tbody>
 			</table>
