@@ -1,5 +1,0 @@
-Como implementação de usuabilidade foi implementada um caixa de diálogo onde o usuário tem ciência caso tenha preenchido errado algum campo de busca.
-
-Ponto positivo: Boa interação com usuário, simples e eficaz.
-
-Ponto negativo: É possível que a interface necessite de mais recursos caso seja necessário elaborar de forma mais completa o programa
