@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Quarto Exercício</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="index.js"></script>
+    </head>
+
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Selecione o Estado:</th>
+                    <th>O nome do estado é</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select id="estado" size="2" onchange="atualizar()">
+                            <option value="Acre" selected>AC</option>
+                            <option value="Alagoas">AL</option>
+                            <option value="Amapá">AP</option>
+                            <option value="Amazonas">AM</option>
+                            <option value="Bahia">BA</option>
+                            <option value="Ceará">CE</option>
+                            <option value="Distrito Federal">DF</option>
+                            <option value="Espírito Santo">ES</option>
+                            <option value="Goiás">GO</option>
+                            <option value="Maranhão">MA</option>
+                            <option value="Mato Grosso">MT</option>
+                            <option value="Mato Grosso do Sul">MS</option>
+                            <option value="Minas Gerais">MG</option>
+                            <option value="Pará">PA</option>
+                            <option value="Paraíba">PB</option>
+                            <option value="Paraná">PR</option>
+                            <option value="Pernambuco">PE</option>
+                            <option value="Piauí">PI</option>
+                            <option value="Rio de Janeiro">RJ</option>
+                            <option value="Rio Grande do Norte">RN</option>
+                            <option value="Rio Grande do Sul">RS</option>
+                            <option value="Rondônia">RO</option>
+                            <option value="Roraima">RR</option>
+                            <option value="Santa Catarina">SC</option>
+                            <option value="São Paulo">SP</option>
+                            <option value="Sergipe">SE</option>
+                            <option value="Tocantins">TO</option>
+                        </select>
+                    </td>
+                    <td><input id="resultado" disabled/></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
