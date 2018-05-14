@@ -1,0 +1,48 @@
+* {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+table {
+    padding: 5px;
+    border-radius: 2px;
+    background: #ddd;
+    margin: auto;
+}
+
+table input, table select {
+    width: 100%;
+    height: 100%;
+}
+
+tr {
+    height: 40px;
+}
+
+td, th {
+    width: 200px;
+    height: 40px;
+    text-align: left;
+}
+
+.lk-content {
+    padding: 20px;
+    border-radius: 3px;
+    background-color: #333333;
+}
+
+.lk-row {
+    text-align: center;
+}
+
+.lk-content span {
+    color: #eeeeee;
+}
+
+.lk-content label, .lk-content input {
+    color: #cccccc;
+}
+
+.lk-content input {
+    background-color: #484848;
+    border-color: #393939;
+}
