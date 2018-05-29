@@ -1,0 +1,7 @@
+Passo a passo para verificação da interface
+
+1 - Avaliação estética do design da interface
+2 - Preencha os campos e verifique se os tipos de dados inputados são correspondentes ao que se precisa para o campo relacionado
+3 - Analise as frases e interações de cada campo e tela
+4 - Verifique a interação com o usuário referente ao preenchimento dos campos. Sendo válidos ou não; Tendo boas ilustrações de avisos ou não; Tendo textos de fácil entendimento ou não.
+5 - Verifique a quantidade de telas e interações com o usuário
