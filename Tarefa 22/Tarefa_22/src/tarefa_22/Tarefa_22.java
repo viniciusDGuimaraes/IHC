@@ -18,7 +18,7 @@ public class Tarefa_22 extends JFrame implements ActionListener{
     JTextField field1, field2, field3, field4;
     JButton bCalcula, bLimpa;
     JTextArea areaDeTexto;
-    JPanel area1, area2;
+    JPanel area1, area2, area3;
     
     public static void main(String[] args) {
         JFrame GUI = new Tarefa_22();
@@ -27,7 +27,7 @@ public class Tarefa_22 extends JFrame implements ActionListener{
     }
     
     Tarefa_22(){
-        setSize(500,500);
+        setSize(600,500);
         setTitle("Exercício 9 - Cálculo Financeiro");
         setLayout(new FlowLayout(FlowLayout.CENTER));
         
@@ -46,14 +46,16 @@ public class Tarefa_22 extends JFrame implements ActionListener{
         bLimpa = new JButton("Limpar Cálculos");
         bLimpa.addActionListener(this);
         
-        areaDeTexto = new JTextArea(5, 40);
+        areaDeTexto = new JTextArea(5, 50);
         JScrollPane painel = new JScrollPane(areaDeTexto);
         
         area1 = new JPanel();
         area2 = new JPanel();
+        area3 = new JPanel();
         
         area1.setLayout(new GridLayout(2, 4));
-        area2.setLayout(new FlowLayout(FlowLayout.CENTER));
+        area2.setLayout(new GridLayout(1,2));
+        area3.setLayout(new FlowLayout(FlowLayout.CENTER));
         
         area1.add(label1);
         area1.add(field1);
@@ -70,11 +72,12 @@ public class Tarefa_22 extends JFrame implements ActionListener{
         area2.add(bCalcula);
         area2.add(bLimpa);
         
-        area2.add(areaDeTexto);
-        area2.add(painel);
+        area3.add(areaDeTexto);
+        area3.add(painel);
         
         add(area1);
         add(area2);
+        add(area3);
     }
 
     public void actionPerformed(ActionEvent evento) {
@@ -85,19 +88,29 @@ public class Tarefa_22 extends JFrame implements ActionListener{
                 areaDeTexto.append("Erro! Uma ou mais caixas de texto estão vazias");
             }
             else{
-                int valorInicial = Integer.parseInt(field1.getText()), 
-                        anoInicial = Integer.parseInt(field3.getText()), 
+                int anoInicial = Integer.parseInt(field3.getText()), 
                         anoFinal = Integer.parseInt(field4.getText());
-                float juros = Float.parseFloat(field2.getText());
+                
+                float valorInicial = Integer.parseInt(field1.getText()),
+                        valorAtual = valorInicial,
+                        juros = Float.parseFloat(field2.getText()), nJuros;
+                
                 NumberFormat moeda = NumberFormat.getCurrencyInstance(), por = NumberFormat.getPercentInstance();
+                por.setMinimumFractionDigits(2);
+                
                 areaDeTexto.setText("");
                 areaDeTexto.append("Nono programa de Práticas Profissionais\n\n");
                 areaDeTexto.append("Valor Inicial:            Juros ao ano:\n");
-                areaDeTexto.append(valorInicial + "            " + por.format(juros) + "\n\n");
+                areaDeTexto.append(valorInicial + "                     " + por.format(juros) + "\n\n");
                 areaDeTexto.append("Ano                     Valor                      Juros\n");
+                
                 for(int i = anoInicial; i <= anoFinal; i++){
-                    areaDeTexto.append(i + "                " + moeda.format(valorInicial) + "               " + por.format(juros) + "\n");
+                    
+                    valorAtual += valorAtual * juros;
+                    nJuros = ((valorAtual/valorInicial) - 1);
+                    areaDeTexto.append(i + "                " + moeda.format(valorAtual) + "               " + por.format(nJuros) + "\n");
                 }
+                
                 areaDeTexto.append("\nMuito obrigado por utilizar os nossos serviços!");
             }
         }
