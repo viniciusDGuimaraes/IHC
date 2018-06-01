@@ -1,5 +1,6 @@
 package tarefa_22;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -44,6 +45,8 @@ public class Tarefa_22 extends JFrame implements ActionListener{
         bCalcula = new JButton("Calcular Rendimentos");
         bCalcula.addActionListener(this);
         bLimpa = new JButton("Limpar Cálculos");
+        bLimpa.setBackground(Color.red);
+        bLimpa.setForeground(Color.white);
         bLimpa.addActionListener(this);
         
         areaDeTexto = new JTextArea(5, 50);
