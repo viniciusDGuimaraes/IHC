@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Exercício 9 - Cálculo Financeiro</title>
+
+        <meta charset="utf-8"/>
+
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+
+    <body>
+        <div class="content">
+            <table>
+                <tr>
+                    <td>Valor Inicial</td>
+                    <td><input type="text" id="valorInicial" value="1000"></td>
+                    <td>Taxa de Juros (A.A.)</td>
+                    <td><input type="text" id="taxaJuros" value="0.12"></td>
+                </tr>
+                <tr>
+                    <td>Ano de início</td>
+                    <td><input type="text" id="anoInicio" value="2006"></td>
+                    <td>Ano de término</td>
+                    <td><input type="text" id="anoTermino" value="2026"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: right"><button id="calcular" onclick="calcular()">Calcular Rendimento</button></td>
+                    <td colspan="2"><button id="limpar" onclick="limpar()">Limpar Cálculos</button></td>
+                </tr>
+            </table>
+
+            <textarea id="result" rows="15">
+            </textarea>
+        </div>
+
+        <script type="text/javascript" src="index.js"></script>
+    </body>
+</html>
