@@ -13,22 +13,22 @@ function calcular() {
     let anoTermino = Number($("#anoTermino").val());
     let result = $("#result");
 
-    if (typeof valorInicial !== "number") {
+    if (isNaN($("#valorInicial").val())) {
         alert("Valor Inicial inválido");
         return;
     }
 
-    if (typeof taxaJuros !== "number") {
+    if (isNaN($("#taxaJuros").val())) {
         alert("Taxa de Juros inválida");
         return;
     }
 
-    if (typeof anoInicio !== "number") {
+    if (isNaN($("#anoInicio").val())) {
         alert("Ano Inicial inválido");
         return;
     }
 
-    if (typeof anoTermino !== "number") {
+    if (isNaN($("#anoTermino").val())) {
         alert("Ano de Término inválido");
         return;
     }
