@@ -1,0 +1,16 @@
+.content {
+    width: 60%;
+}
+
+.content textarea, .content table, .content input {
+    width: 100%;
+}
+
+#result {
+    font-family: monospace;
+}
+
+#limpar {
+    color: #fff;
+    background-color: #dd1d1d;
+}
